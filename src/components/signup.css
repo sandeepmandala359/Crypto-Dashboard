@@ -1,0 +1,38 @@
+.signup-container {
+    /* width: 500px; */
+    border: 1px solid black;
+    background: floralwhite;
+    /* height: 500px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('https://crpto-dashboard-bucket.s3.ap-south-1.amazonaws.com/banner2.jpg');
+
+    h1 {
+        font-size: 25px;
+    }
+}
+
+.button-container {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 20px;
+    width: 350px;
+    height: 350px;
+    border: 1px solid;
+    background: white;
+}
+
+.formfield {
+    margin-top: 20px;
+}
