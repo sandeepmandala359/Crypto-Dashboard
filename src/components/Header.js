@@ -59,8 +59,17 @@ function Header() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={currency}
-              style={{ width: 100, height: 40, marginLeft: 15 }}
+              style={{ width: 100, height: 40, marginLeft: 15, color: 'white !important' }}
               onChange={(e) => setCurrency(e.target.value)}
+              inputProps={{
+                MenuProps: {
+                  MenuListProps : {
+                    sx: {
+                      color: 'white !important'
+                    }
+                  }
+                }
+              }}
             >
               <MenuItem value={"USD"}>USD</MenuItem>
               <MenuItem value={"INR"}>INR</MenuItem>

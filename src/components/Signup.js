@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import './signup.css';
-
-
 import userpool from '../userpool';
 import { Button, TextField } from '@material-ui/core';
 
@@ -24,6 +22,10 @@ const Signup = () => {
         }
         if (formField === "password") {
             setPassword(value);
+        }
+
+        if (formField === "cnf-password") {
+            setCnfPassword(value);
         }
     };
 
@@ -59,6 +61,7 @@ const Signup = () => {
     const handleClick = (e) => {
         setEmailErr("");
         setPasswordErr("");
+        setPassword("");
         setCnfPassword("");
         validation()
             .then((res) => {
@@ -74,12 +77,14 @@ const Signup = () => {
                     userpool.signUp(username, password, attributeList, null, (err, data) => {
                         if (err) {
                             console.log(err);
-                            alert("Couldn't sign up");
+                            // alert("Couldn't sign up");
                         } else {
                             console.log(data);
-                            alert('User Added Successfully');
-                            history('/dashboard');
+                            // alert('User Added Successfully');
+                            history('/');
                         }
+                        alert('User Added Successfully');
+                        history.push('/');
                     });
                 }
             }, err => console.log(err))
@@ -89,7 +94,7 @@ const Signup = () => {
     return (
         <div className="signup-container">
             <div className="signup">
-                <h1 style={{ fontSize: '25px' }}>Signup</h1>
+                <h1 style={{ fontSize: '25px', color: 'black' }}>Signup</h1>
                 <div className='form'>
                     <div className="formfield">
                         <TextField
@@ -110,7 +115,7 @@ const Signup = () => {
                     </div>
                     <div className='formfield'>
                         <TextField
-                            value={password}
+                            value={cnfpassword}
                             onChange={(e) => { formInputChange("cnf-password", e.target.value) }}
                             type="password"
                             label="Confirm Password"
