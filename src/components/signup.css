@@ -7,8 +7,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('https://crpto-dashboard-bucket.s3.ap-south-1.amazonaws.com/banner2.jpg');
-
+    background-image: url('https://crypto-dashboard123.s3.amazonaws.com/banner2.jpg');
     h1 {
         font-size: 25px;
     }

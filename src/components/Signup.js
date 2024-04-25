@@ -3,9 +3,14 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import './signup.css';
-import userpool from '../userpool';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { Button, TextField } from '@material-ui/core';
 
+const poolData = {
+    UserPoolId: 'us-east-1_zfCz2S91S',
+    ClientId: '72h2o45hj1vk3gj7ftdb82t5hm'
+  };
+  const UserPool = new CognitoUserPool(poolData);
 const Signup = () => {
 
     const history = useHistory();
@@ -47,7 +52,7 @@ const Signup = () => {
             else if (password.length < 6) {
                 setPasswordErr("must be 6 character")
                 resolve({ email: "", password: "must be 6 character" });
-            } else if (passwordErr === cnfpassword) {
+            } else if (password !== cnfpassword) {
                 setPasswordErr("Password and confirm password should be same")
                 resolve({ email: "", password: "Password and confirm password should be same" });
             }
@@ -74,17 +79,26 @@ const Signup = () => {
                         })
                     );
                     let username = email;
-                    userpool.signUp(username, password, attributeList, null, (err, data) => {
+                    UserPool.signUp(username, password, [], null, (err, data) => {
                         if (err) {
                             console.log(err);
-                            // alert("Couldn't sign up");
+                             let error = err.toString();
+                             if(error.split(" ")[0]==="CodeDeliveryFailureException:"){
+                             alert("Request sent. Wait for the confirmation from admin");
+                             history.push('/') 
+                            }
+                            else if(error.split(" ")[0]==="UsernameExistsException:"){
+                            alert("User already exists");
+                            history.push('/')   
+                            }
+                            else if(error.split(" ")[0]==="InvalidPasswordException:"){
+                            alert(" Password must be 8-character length, contains atleast 1 number, atleast 1 lowercaseletter, atleast 1 uppercase letter, Contains at least 1 special character");
+                        }
                         } else {
                             console.log(data);
-                            // alert('User Added Successfully');
-                            history('/');
+                             alert('User Added Successfully');
+                             history.push('/')
                         }
-                        alert('User Added Successfully');
-                        history.push('/');
                     });
                 }
             }, err => console.log(err))

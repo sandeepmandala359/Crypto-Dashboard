@@ -43,11 +43,11 @@ function Header() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color="transparent" position="static">
+      <AppBar color="white" position="static" >
         <Container>
           <Toolbar>
             <Typography
-              onClick={() => history.push(`/`)}
+              onClick={() => history.push('/dashboard')}
               variant="h6"
               className={classes.title}
             >
@@ -59,13 +59,13 @@ function Header() {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={currency}
-              style={{ width: 100, height: 40, marginLeft: 15, color: 'white !important' }}
+              style={{ width: 100, height: 40, marginLeft: 15, textcolor: 'white !important' }}
               onChange={(e) => setCurrency(e.target.value)}
               inputProps={{
                 MenuProps: {
                   MenuListProps : {
                     sx: {
-                      color: 'white !important'
+                      textcolor: 'white !important'
                     }
                   }
                 }

@@ -17,6 +17,10 @@ export const authenticate=(Email,Password)=>{
                 console.log("login successful");
                 resolve(result);
             },
+            newPasswordRequired: function (userAttributes) {
+               // delete userAttributes.email_verified;
+                user.completeNewPasswordChallenge("ChandraJc@1234", {}, this);
+            },
             onFailure:(err)=>{
                 console.log("login failed",err);
                 reject(err);

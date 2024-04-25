@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
-    backgroundImage: "url('https://crpto-dashboard-bucket.s3.ap-south-1.amazonaws.com/banner2.jpg')",
+    backgroundImage: "url('https://crypto-dashboard123.s3.amazonaws.com/banner2.jpg')",
   },
   bannerContent: {
     height: 400,

@@ -95,7 +95,7 @@ const Login = () => {
               <Button type='submit' variant='contained' onClick={() => history.push('/signup')}>Signup</Button>
             </div>
           </div>
-          <Typography variant="body">{loginErr}</Typography>
+          <Typography  style={{color:'red'}} variant="body">{loginErr}</Typography>
         </div>
       </div>
     </div>
